@@ -27,12 +27,13 @@ final class EditBlogCategoryHandler
                     continue;
                 }
                 $blogCategoryLangs->setTitle($title);
-            foreach ($command->getDescription() as $langId => $langData) {
-                $blogCategoryLangs = $blogCategory->getBlogCategoryLangByLangId($langId);
-                if (null === $blogCategoryLangs) {
-                    continue;
+                foreach ($command->getDescription() as $langId => $langData) {
+                    $blogCategoryLangs = $blogCategory->getBlogCategoryLangByLangId($langId);
+                    if (null === $blogCategoryLangs) {
+                        continue;
+                    }
+                    $blogCategoryLangs->setDescription($title);
                 }
-                $blogCategoryLangs->setDescription($title);
             }
             $this->entityManager->flush();
         } catch (PrestaShopException $exception) {
