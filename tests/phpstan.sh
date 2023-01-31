@@ -1,6 +1,6 @@
 #!/bin/bash
 PS_VERSION=$1
-MODULE_NAME=wpkcartreminder
+MODULE_NAME=eniblog
 
 set -e
 
