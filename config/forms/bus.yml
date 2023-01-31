@@ -1,0 +1,13 @@
+services:
+  _defaults:
+    public: true
+
+eni.blog.form.identifiable_object.data_handler.category_form_data_handler:
+  class: 'Eni\Blog\Form\BlogCategoryFormDataHandler'
+  arguments:
+    - '@prestashop.core.command_bus'
+
+eni.blog.form.identifiable_object.data_provider.category_form_data_provider:
+  class: 'Eni\Blog\Form\BlogCategoryFormDataProvider'
+  arguments:
+      - '@prestashop.core.query_bus'

@@ -1,0 +1,22 @@
+services:
+  _defaults:
+    public: true
+
+  eni.blog.query_handler.get_blog_category_for_editing:
+    class: 'Eni\Blog\QueryHandler\GetBlogCategoryForEditingHandler'
+    tags:
+      - { name: 'tactician.handler', command: 'Eni\Blog\Query\GetBlogCategoryForEditing' }
+
+  eni.blog.command_handler.edit_blog_category:
+    class: 'Eni\Blog\CommandHandler\EditBlogCategoryHandler'
+    arguments:
+      - '@validator'
+    tags:
+      - { name: 'tactician.handler', command: 'Eni\Blog\Command\EditBlogCategoryCommand' }
+
+  eni.blog.command_handler.add_blog_category:
+    class: 'Eni\Blog\CommandHandler\AddBlogCategoryHandler'
+    arguments:
+      - '@validator'
+    tags:
+      - { name: 'tactician.handler', command: 'Eni\Blog\Command\AddBlogCategoryCommand' }

@@ -1,0 +1,14 @@
+{% extends '@Modules/eniblog/views/templates/admin/layout.html.twig' %}
+
+{% block controllerTitle %}{{ 'Configure controller'|trans({}, 'Modules.Eniblog.Admin') }}{% endblock %}
+
+{% block controllerContent %}
+    Configuration du module
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    
+    {# include some local JavaScript #}
+    <script src="{{ asset('../modules/eniblog/views/js/configure.js') }}" async defer></script>
+{% endblock %}

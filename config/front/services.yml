@@ -1,0 +1,9 @@
+imports:
+  - { resource: ../common.yml }
+
+services:
+  _defaults:
+    public: true
+
+  eni.blog.front:
+    class: Eni\Blog\Services\FrontService

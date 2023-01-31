@@ -1,0 +1,13 @@
+<div class="text-center showcase-list-card">
+  <img class="img-responsive mt-3 img-rtl" src="{{ asset('../modules/eniblog/views/img/empty_state.png') }}">
+
+  <p class="mt-4 showcase-list-card__header">{{ 'Keep in touch with your customers'|trans({}, 'Modules.Eniblog.Admin') }}</p>
+
+  <p class="mx-auto showcase-list-card__message">
+    {{ 'Write somes words.'|trans({}, 'Modules.Eniblog.Admin') }}
+  </p>
+
+  <div class="mt-4">
+    <a href="{{ path('eniblog_category_create') }}" class="btn btn-primary ml-1">{{ 'Add new category'|trans({}, 'Modules.Eniblog.Admin') }}</a>
+  </div>
+</div>

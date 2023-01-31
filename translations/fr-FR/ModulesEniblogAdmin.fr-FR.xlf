@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="admin-dev" source-language="fr-FR" target-language="fr-FR" datatype="plaintext">
+    <body>
+      <trans-unit id="8157e52406588394a1fe955c4fdee563">
+        <source>Write somes words.</source>
+        <target>Write somes words.</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="b7c44469d38604492350c45b9fd3b1c2">
+        <source>Keep in touch with your customers</source>
+        <target>Keep in touch with your customers</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="f15c1cae7882448b3fb0404682e17e61">
+        <source>Content</source>
+        <target>Content</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="b5a7adde1af5c87d7fd797b6245c2a39">
+        <source>Description</source>
+        <target>Description</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="d0d4e3688fdaee5afa292083b855e143">
+        <source>Add new category</source>
+        <target>Add new category</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="a9fcbb1ce74c114add262c6b760dd94c">
+        <source>Cannot find category %category%</source>
+        <target>Cannot find category %category%</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="af1b98adf7f686b84cd0b443e022b7a0">
+        <source>Categories</source>
+        <target>Categories</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="b78a3223503896721cca1303f776159b">
+        <source>Title</source>
+        <target>Titre</target>
+        <note>Line: </note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

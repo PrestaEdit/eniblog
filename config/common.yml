@@ -1,0 +1,8 @@
+services:
+  _defaults:
+    public: true
+  eni.blog.repository.category_repository:
+    class: Eni\Blog\Repository\BlogCategoryRepository
+    factory: ["@doctrine.orm.default_entity_manager", getRepository]
+    arguments:
+      - Eni\Blog\Entity\BlogCategory

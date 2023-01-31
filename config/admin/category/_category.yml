@@ -1,0 +1,79 @@
+eniblog_category_index:
+  path: /
+  methods: [GET]
+  defaults:
+    _controller: 'Eni\Blog\Controller\Admin\CategoriesController::indexAction'
+    # Permet de désactiver l'ajout automatique de /modules dans l'URL générée
+    _disable_module_prefix: true
+    # Legacy
+    _legacy_controller: "AdminEniBlogCategory"
+    _legacy_link: "AdminEniBlogCategory"
+
+eniblog_category_create:
+  path: /new
+  methods: [GET, POST]
+  defaults:
+    _controller: 'Eni\Blog\Controller\Admin\CategoriesController::createAction'
+    # Permet de désactiver l'ajout automatique de /modules dans l'URL générée
+    _disable_module_prefix: true
+    # Legacy
+    _legacy_controller: "AdminEniBlogCategory"
+    _legacy_link: "AdminEniBlogCategory::add"
+
+eniblog_category_edit:
+  path: /{blogCategoryId}/edit
+  methods: [GET, POST]
+  defaults:
+    _controller: 'Eni\Blog\Controller\Admin\CategoriesController::editAction'
+    # Permet de désactiver l'ajout automatique de /modules dans l'URL générée
+    _disable_module_prefix: true
+    _legacy_controller: "AdminEniBlogCategory"
+    _legacy_link: "AdminEniBlogCategory:update"
+  requirements:
+    blogCategoryId: \d+
+
+eniblog_category_delete:
+  path: /{blogCategoryId}/delete
+  methods: [DELETE]
+  defaults:
+    _controller: 'Eni\Blog\Controller\Admin\CategoriesController::deleteAction'
+    # Permet de désactiver l'ajout automatique de /modules dans l'URL générée
+    _disable_module_prefix: true
+    _legacy_controller: "AdminEniBlogCategory"
+    _legacy_link: "AdminEniBlogCategory:delete"
+  requirements:
+    blogCategoryId: \d+
+
+eniblog_category_toggle_status:
+  path: /{blogCategoryId}/toggle-status
+  methods: [POST]
+  defaults:
+    _controller: Eni\Blog\Controller\Admin\CategoriesController::toggleStatusAction
+    # Permet de désactiver l'ajout automatique de /modules dans l'URL générée
+    _disable_module_prefix: true 
+    _legacy_controller: AdminEniBlogCategory
+    _legacy_link: AdminEniBlogCategory:toggleStatus
+    _legacy_parameters:
+      id_blog_category: blogCategoryId
+  requirements:
+    blogCategoryId: \d+
+
+eniblog_category_enable_bulk:
+  path: /enable-bulk
+  methods: [POST]
+  defaults:
+    _controller: 'Eni\Blog\Controller\Admin\CategoriesController::enableBulkAction'
+    _disable_module_prefix: true
+    _legacy_controller: "AdminEniBlogCategory"
+    _legacy_link: "AdminEniBlogCategory::submitBulkenableSelectioncategories"
+
+eniblog_category_delete_bulk:
+  path: /delete-bulk
+  methods: [POST]
+  defaults:
+    _controller: 'Eni\Blog\Controller\Admin\CategoriesController::deleteBulkAction'
+    # Permet de désactiver l'ajout automatique de /modules dans l'URL générée
+    _disable_module_prefix: true
+    # Legacy
+    _legacy_controller: "AdminEniBlogCategory"
+    _legacy_link: "AdminEniBlogCategory::submitBulkdeleteSelectioncategories"

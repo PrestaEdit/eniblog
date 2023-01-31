@@ -1,0 +1,29 @@
+{
+  "name": "eni/eniblog",
+  "description": "Module de blog",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jonathan Danse"
+    }
+  ],
+  "require": {
+    "php": ">=7.2.5"
+  },
+  "require-dev": {
+    "prestashop/php-dev-tools": "^4.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Eni\\Blog\\Models\\": "models/",
+      "Eni\\Blog\\": "src/"
+    },
+    "exclude-from-classmap": []
+  },
+  "config": {
+    "preferred-install": "dist",
+    "prepend-autoloader": false,
+    "platform-check": false
+  },
+  "type": "prestashop-module"
+}

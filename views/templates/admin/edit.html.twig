@@ -1,0 +1,23 @@
+{% extends '@PrestaShop/Admin/layout.html.twig' %}
+
+{% set layoutHeaderToolbarBtn = {
+  'create' : {
+    'href': path('demo_configuration_multiple_forms'),
+    'desc': 'Switch to Multiple Forms',
+    'icon': 'add_to_photos'
+  }
+} %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col">
+            {% include '@Modules/eniblog/views/templates/admin/form.html.twig' %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('../modules/eniblog/views/js/categories_form.bundle.js') }}"></script>
+{% endblock %}

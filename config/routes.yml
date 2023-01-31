@@ -1,0 +1,39 @@
+_categories:
+  resource: "admin/category/_category.yml"
+  prefix: /eniblog/categories/
+
+# This one is just to allow us to make a newer parent tab
+eniblog:
+    path: eniblog
+    methods: [GET]
+    defaults:
+        _controller: 'Eni\Blog\Controller\Admin\CategoriesController::indexAction'
+        # Permet de désactiver l'ajout automatique de /modules dans l'URL générée
+        _disable_module_prefix: true
+        # Legacy
+        _legacy_controller: "AdminEniBlog"
+        _legacy_link: "AdminEniBlog"
+
+eniblog_configure:
+    path: eniblog/configure
+    methods: [GET, POST]
+    defaults:
+        _controller: 'Eni\Blog\Controller\Admin\ConfigureController::configureAction'
+        # Permet de désactiver l'ajout automatique de /modules dans l'URL générée
+        _disable_module_prefix: true 
+        # Legacy
+        _legacy_controller: 'AdminEniBlogConfigure'
+        _legacy_link: 'AdminEniBlogConfigure'
+    options:
+        expose: true
+
+eniblog_configure_vuejs:
+    path: eniblog/vuejs
+    methods: [GET]
+    defaults:
+        _controller: 'Eni\Blog\Controller\Admin\ConfigureVueJSController::indexAction'
+        # Permet de désactiver l'ajout automatique de /modules dans l'URL générée
+        _disable_module_prefix: true 
+        # Legacy
+        _legacy_controller: 'AdminEniBlogConfigureVueJS'
+        _legacy_link: 'AdminEniBlogConfigureVueJS'

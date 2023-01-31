@@ -1,0 +1,8 @@
+services:
+  _defaults:
+    public: true
+
+  eni.blog.prestashop.core.kpi_row.presenter:
+    class: Eni\Blog\Services\KPIPresenterService
+    decorates: "prestashop.core.kpi_row.presenter"
+    arguments: ["@eni.blog.prestashop.core.kpi_row.presenter.inner"]

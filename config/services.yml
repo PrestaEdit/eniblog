@@ -1,0 +1,99 @@
+imports:
+  - { resource: ./common.yml }
+
+services:
+  _defaults:
+    public: true
+
+  eni.blog.search:
+    class: Eni\Blog\Services\SearchService
+    public: true
+    arguments:
+      - "@translator"
+
+  eni.blog.export_command:
+    class: Eni\Blog\Command\ExportCommand
+    arguments:
+      - "@eni.blog.search"
+    tags:
+      - { name: "console.command" }
+
+  # Grid definition
+  eni.blog.grid.definition.factory.category_grid_definition_factory:
+    public: true
+    class: 'Eni\Blog\Grid\Definition\Factory\BlogCategoryGridDefinitionFactory'
+    parent: "prestashop.core.grid.definition.factory.abstract_grid_definition"
+
+  # QueryBuilder
+  eni.blog.grid.query_builder.blogcategory:
+    public: true
+    class: 'Eni\Blog\Grid\Query\BlogCategoryQueryBuilder'
+    parent: "prestashop.core.grid.abstract_query_builder"
+    arguments:
+      - '@prestashop.core.query.doctrine_search_criteria_applicator'
+      - "@=service('prestashop.adapter.legacy.context').getContext().language.id"
+      - "@=service('prestashop.adapter.legacy.context').getContext().shop.id"
+
+  # Grid Data Factories
+  eni.blog.grid.data.factory.category_data_factory:
+    public: true
+    class: 'PrestaShop\PrestaShop\Core\Grid\Data\Factory\DoctrineGridDataFactory'
+    arguments:
+      - "@eni.blog.grid.query_builder.blogcategory" # service id of our query builder
+      - "@prestashop.core.hook.dispatcher" # every doctrine query builder needs the hook dispatcher
+      - "@prestashop.core.grid.query.doctrine_query_parser" # parser to get the raw SQL query
+      - "categories" # this should match your grid id, in our case it's "categories"
+
+  # Configure Grid factory to use services we have implemented
+  eni.blog.grid.factory.categories:
+    public: true
+    class: 'PrestaShop\PrestaShop\Core\Grid\GridFactory'
+    arguments:
+      - "@eni.blog.grid.definition.factory.category_grid_definition_factory" # our definition factory
+      - "@eni.blog.grid.data.factory.category_data_factory" # our data factory
+      - "@prestashop.core.grid.filter.form_factory" # core service needed by grid factory
+      - "@prestashop.core.hook.dispatcher" # core service needed by grid factory
+
+  # Form services
+  eni.blog.type.category:
+    class: 'Eni\Blog\Form\BlogCategoryType'
+    parent: 'form.type.translatable.aware'
+    public: true
+    arguments:
+        - '@=service("prestashop.adapter.multistore_feature").isUsed()'
+    tags:
+        - { name: form.type }
+
+  eni.blog.form.identifiable_object.data_provider.category_form_data_provider:
+    class: 'Eni\Blog\Form\BlogCategoryFormDataProvider'
+    arguments:
+        - '@eni.blog.repository.category_repository'
+
+  eni.blog.form.identifiable_object.builder.category_form_builder:
+    class: 'PrestaShop\PrestaShop\Core\Form\IdentifiableObject\Builder\FormBuilder'
+    factory: 'prestashop.core.form.builder.form_builder_factory:create'
+    arguments:
+      - 'Eni\Blog\Form\BlogCategoryType'
+      - '@eni.blog.form.identifiable_object.data_provider.category_form_data_provider'
+
+  eni.blog.form.identifiable_object.data_handler.category_form_data_handler:
+    class: 'Eni\Blog\Form\BlogCategoryFormDataHandler'
+    arguments:
+      - '@eni.blog.repository.category_repository'
+      - '@prestashop.core.admin.lang.repository'
+      - '@doctrine.orm.default_entity_manager'
+
+  eni.blog.form.identifiable_object.handler.category_form_handler:
+    class: 'PrestaShop\PrestaShop\Core\Form\IdentifiableObject\Handler\FormHandler'
+    factory: 'prestashop.core.form.identifiable_object.handler.form_handler_factory:create'
+    arguments:
+      - '@eni.blog.form.identifiable_object.data_handler.category_form_data_handler'
+
+  # Handlers
+  eni.blog.domain.blog_category.query_handler.get_blog_category_handler:
+    class: 'Eni\Blog\Domain\BlogCategory\QueryHandler\GetBlogCategoryHandler'
+    arguments:
+      - '@eni.blog.repository.category_repository'
+    tags:
+      - name: tactician.handler
+        command: 'Eni\Blog\Domain\BlogCategory\Query\GetBlogCategory'

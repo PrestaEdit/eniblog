@@ -1,0 +1,25 @@
+{% extends '@PrestaShop/Admin/layout.html.twig' %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col">
+            <form method="post" class="form-horizontal">
+                <div class="card">
+                    <h3 class="card-header">
+                        <i class="material-icons">settings</i> {% block controllerTitle %}{{ 'Controller title'|trans({}, 'Modules.Eniblog.Admin') }}{% endblock %}
+                    </h3>
+                    <div class="card-block row">
+                        <div class="card-text col">
+                            {% block controllerContent %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        {% block controllerFooter %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
